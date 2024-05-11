@@ -1,13 +1,20 @@
 import Grid from "@mui/material/Grid";
 import { CustomCard } from "./components/cards";
+import { getSampleJdJSON } from "./data/dummyData";
+import { Container } from "@mui/material";
 function App() {
+  const dummyData = getSampleJdJSON();
+  console.log(dummyData.length);
   return (
     <div>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        {Array.from(Array(6)).map((_, index) => (
-          <CustomCard key={index} />
-        ))}
-      </Grid>
+      <Container maxWidth>
+        {" "}
+        <Grid container spacing={4}>
+          {dummyData.map((data) => (
+            <CustomCard key={data.jdUid} jobDetail={data} />
+          ))}
+        </Grid>
+      </Container>
     </div>
   );
 }

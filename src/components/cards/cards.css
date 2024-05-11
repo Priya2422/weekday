@@ -1,0 +1,26 @@
+.logo{
+    width: 2rem;
+    height: 3rem;
+}
+.metaData{
+    text-transform: capitalize;
+}
+.job-description{
+    overflow: hidden;
+}
+.collapsed{
+    animation: mask-collapsed 1s ease-in-out;
+    mask-image: linear-gradient( white 0%,transparent);
+}
+.expanded{
+    animation: mask-expanded 1s ease-in-out;
+    mask-image: linear-gradient(white 100%,transparent);
+}
+@keyframes mask-collapsed{
+    from{mask-image: linear-gradient(white 100%,transparent)}
+    to{mask-image: linear-gradient(white 0%,transparent)}
+}
+@keyframes mask-expanded{
+    from{mask-image: linear-gradient(white 0%,transparent)}
+    to{mask-image: linear-gradient(white 100%,transparent)}
+}

@@ -1,30 +1,102 @@
-import { Button, Card, CardActions, CardContent, Typography } from "@mui/material";
-import { memo } from "react";
-const CustomCardComponent = () => {
+import { Button, Card, CardActions, CardContent, Grid, Stack, Typography } from "@mui/material";
+import { memo, useEffect, useState } from "react";
+import "./cards.css";
+const CustomCardComponent = ({ jobDetail }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const handleTextFade = () => {
+    setIsExpanded((prev) => !prev);
+  };
   return (
-    <div>
-      <Card variant="outlined">
+    <Grid item xs={12} sm={6} md={4}>
+      <Card variant="outlined" sx={{ padding: 2 }}>
         <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Word of the Day
-          </Typography>
-          <Typography variant="h5" component="div">
-            bev
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
-          </Typography>
-          <Typography variant="body2">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
-          </Typography>
+          <Grid item container direction="row" gap={1} alignItems={"flex-start"}>
+            <img src={jobDetail.logoUrl} alt={jobDetail.companyName} className="logo" />
+            <Stack spacing={0}>
+              <Typography marginBottom={0} sx={{ fontSize: 15 }} color="grey" gutterBottom>
+                {jobDetail.companyName}
+              </Typography>
+              <Typography color="text.secondary" variant="h6" component="div" className="metaData">
+                {jobDetail.jobRole}
+              </Typography>
+              <Typography
+                sx={{ mb: 1.5, fontSize: 13 }}
+                color="text.secondary"
+                className="metaData"
+              >
+                {jobDetail.location}
+              </Typography>
+            </Stack>
+          </Grid>
+
+          {!jobDetail.minJdSalary && !jobDetail.maxJdSalary ? (
+            <Typography variant="body1">Estimated Salary: Not Mentioned</Typography>
+          ) : (
+            <Typography variant="body1">
+              Estimated Salary: {jobDetail.salaryCurrencyCode}{" "}
+              {jobDetail.minJdSalary && jobDetail.maxJdSalary ? (
+                <>
+                  <span>{jobDetail.maxJdSalary}</span>
+                  {" - "}
+                  <span>{jobDetail.maxJdSalary}</span>
+                </>
+              ) : jobDetail.maxJdSalary ? (
+                jobDetail.maxJdSalary
+              ) : (
+                jobDetail.minJdSalary
+              )}
+              {" LPA"}
+            </Typography>
+          )}
+          <Stack>
+            <Typography variant="subtitle1">Job Description:</Typography>
+            <Typography
+              variant="body1"
+              className={`${isExpanded ? "expanded" : "collapsed"} job-description`}
+            >
+              {jobDetail.jobDetailsFromCompany}
+            </Typography>
+            <Button size="small" onClick={handleTextFade}>
+              View More
+            </Button>
+          </Stack>
+          {!jobDetail.minExp && !jobDetail.maxExp ? (
+            <Typography variant="body1">Experience Required: Not Mentioned</Typography>
+          ) : (
+            <Typography variant="body1">
+              Experience Required:{" "}
+              {jobDetail.minExp && jobDetail.maxExp ? (
+                <>
+                  <span>{jobDetail.minExp}</span>
+                  {" - "}
+                  <span>{jobDetail.maxExp}</span>
+                </>
+              ) : jobDetail.maxExp ? (
+                jobDetail.maxExp
+              ) : (
+                jobDetail.minExp
+              )}
+              {"y"}
+            </Typography>
+          )}
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button
+            size="small"
+            variant="contained"
+            fullWidth
+            sx={{
+              height: "2.5rem",
+              backgroundColor: "#54efc3",
+              color: "black",
+              fontSize: "1rem",
+            }}
+          >
+            Easy Apply
+          </Button>
         </CardActions>
       </Card>
-    </div>
+    </Grid>
   );
 };
 
