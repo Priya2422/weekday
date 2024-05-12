@@ -1,0 +1,15 @@
+.filter-search{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.locationType{
+    border: none;
+    outline: none;
+}
+@media screen and (max-width: 700px) {
+    .filter-search{
+        flex-direction: column;
+        
+    }
+}

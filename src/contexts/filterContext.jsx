@@ -11,13 +11,13 @@ const initialState = {
     companyName: "",
     location: "",
     locationType: "",
-    salary: null,
+    salary: 0,
     role: [],
   },
 };
 
 export const FilterContextProvider = ({ children }) => {
-  const products = useMemo(() => {
+  const jobs = useMemo(() => {
     return getSampleJdJSON();
   }, []);
 
@@ -28,24 +28,23 @@ export const FilterContextProvider = ({ children }) => {
 
     return dispatch({ type: "UPDATE_FILTERS_VALUE", payload: { name, value } });
   };
-
+  const clearFilterValue = (name) => {
+    return dispatch({ type: "CLEAR_FILTERS_VALUE", payload: { nameType: name } });
+  };
   useEffect(() => {
     dispatch({ type: "FILTER_PRODUCTS" });
-  }, [products, state.filters]);
+  }, [jobs, state.filters]);
 
-  // to load all the products for grid and list view
   useEffect(() => {
-    dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: products });
-  }, [products]);
+    dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: jobs });
+  }, [jobs]);
 
   return (
     <FilterContext.Provider
       value={{
         ...state,
-        setGridView,
-        setListView,
-        sorting,
         updateFilterValue,
+        clearFilterValue,
       }}
     >
       {children}

@@ -18,6 +18,17 @@ const filterReducer = (state, action) => {
           },
         };
   
+      case "CLEAR_FILTERS_VALUE":
+        const { nameType } = action.payload;
+        
+        return {
+          ...state,
+          filters: {
+            ...state.filters,
+            [nameType]: nameType==="salary"?0:"",
+          },
+        };
+  
       case "FILTER_PRODUCTS":
         let { all_jobs } = state;
         let tempFilterJob = [...all_jobs];

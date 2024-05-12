@@ -13,16 +13,28 @@ const CustomCardComponent = ({ jobDetail }) => {
           <Grid item container direction="row" gap={1} alignItems={"flex-start"}>
             <img src={jobDetail.logoUrl} alt={jobDetail.companyName} className="logo" />
             <Stack spacing={0}>
-              <Typography marginBottom={0} sx={{ fontSize: 15 }} color="grey" gutterBottom>
+              <Typography
+                marginBottom={0}
+                sx={{ fontSize: 15, fontFamily: "inherit" }}
+                color="grey"
+                gutterBottom
+              >
                 {jobDetail.companyName}
               </Typography>
-              <Typography color="text.secondary" variant="h6" component="div" className="metaData">
+              <Typography
+                color="text.secondary"
+                variant="h6"
+                fontFamily={"inherit"}
+                component="div"
+                className="metaData"
+              >
                 {jobDetail.jobRole}
               </Typography>
               <Typography
                 sx={{ mb: 1.5, fontSize: 13 }}
                 color="text.secondary"
                 className="metaData"
+                fontFamily={"inherit"}
               >
                 {jobDetail.location}
               </Typography>
@@ -30,9 +42,11 @@ const CustomCardComponent = ({ jobDetail }) => {
           </Grid>
 
           {!jobDetail.minJdSalary && !jobDetail.maxJdSalary ? (
-            <Typography variant="body1">Estimated Salary: Not Mentioned</Typography>
+            <Typography variant="body1" fontFamily={"inherit"}>
+              Estimated Salary: Not Mentioned
+            </Typography>
           ) : (
-            <Typography variant="body1">
+            <Typography variant="body1" fontFamily={"inherit"}>
               Estimated Salary: {jobDetail.salaryCurrencyCode}{" "}
               {jobDetail.minJdSalary && jobDetail.maxJdSalary ? (
                 <>
@@ -49,35 +63,51 @@ const CustomCardComponent = ({ jobDetail }) => {
             </Typography>
           )}
           <Stack>
-            <Typography variant="subtitle1">Job Description:</Typography>
+            <Typography variant="subtitle1" fontFamily={"inherit"}>
+              Job Description:
+            </Typography>
             <Typography
               variant="body1"
+              fontFamily={"inherit"}
               className={`${isExpanded ? "expanded" : "collapsed"} job-description`}
             >
               {jobDetail.jobDetailsFromCompany}
             </Typography>
-            <Button size="small" onClick={handleTextFade}>
+            <Button size="small" onClick={handleTextFade} sx={{ fontFamily: "inherit" }}>
               View More
             </Button>
           </Stack>
           {!jobDetail.minExp && !jobDetail.maxExp ? (
-            <Typography variant="body1">Experience Required: Not Mentioned</Typography>
+            <Stack>
+              <Typography variant="subtitle1" fontFamily={"inherit"}>
+                Experience Required:
+              </Typography>
+              <Typography variant="body1" fontFamily={"inherit"}>
+                Not Mentioned
+              </Typography>
+            </Stack>
           ) : (
-            <Typography variant="body1">
-              Experience Required:{" "}
-              {jobDetail.minExp && jobDetail.maxExp ? (
-                <>
-                  <span>{jobDetail.minExp}</span>
-                  {" - "}
-                  <span>{jobDetail.maxExp}</span>
-                </>
-              ) : jobDetail.maxExp ? (
-                jobDetail.maxExp
-              ) : (
-                jobDetail.minExp
-              )}
-              {"y"}
-            </Typography>
+            <Stack>
+              <Typography variant="subtitle1" fontFamily={"inherit"}>
+                Experience Required:
+              </Typography>
+
+              <Typography variant="body2" fontFamily={"inherit"}>
+                {" "}
+                {jobDetail.minExp && jobDetail.maxExp ? (
+                  <>
+                    <span>{jobDetail.minExp}</span>
+                    {" - "}
+                    <span>{jobDetail.maxExp}</span>
+                  </>
+                ) : jobDetail.maxExp ? (
+                  jobDetail.maxExp
+                ) : (
+                  jobDetail.minExp
+                )}
+                {" years"}
+              </Typography>
+            </Stack>
           )}
         </CardContent>
         <CardActions>
@@ -90,6 +120,7 @@ const CustomCardComponent = ({ jobDetail }) => {
               backgroundColor: "#54efc3",
               color: "black",
               fontSize: "1rem",
+              fontFamily: "inherit",
             }}
           >
             Easy Apply
