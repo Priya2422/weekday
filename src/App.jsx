@@ -51,7 +51,7 @@ function App() {
             pageStart={0}
             loadMore={loadingData}
             hasMore={index < filter_jobs.length}
-            loader={<Loader />}
+            loader={<Loader key={"loader"} />}
           >
             <Grid container spacing={4}>
               {mockApiData.map((data) => (

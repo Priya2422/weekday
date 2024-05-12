@@ -37,19 +37,18 @@ const filterReducer = (state, action) => {
   
         if (companyName) {
           tempFilterJob = tempFilterJob.filter((curElem) => {
-            return curElem.companyName.toLowerCase().includes(companyName);
+            return curElem.companyName.toLowerCase().includes(companyName.toLowerCase());
           });
         }
   
         if (location) {
           tempFilterJob = tempFilterJob.filter(
-            (curElem) => curElem.location.toLowerCase().includes(location)
+            (curElem) => curElem.location.toLowerCase().includes(location.toLowerCase())
           );
         }
         if (salary) {
           tempFilterJob = tempFilterJob.filter(
             (curElem) => {
-              console.log(curElem.minJdSalary,curElem.maxJdSalary);
               if(curElem.maxJdSalary){
                 return curElem.maxJdSalary<=salary;
               }

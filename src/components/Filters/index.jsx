@@ -106,7 +106,7 @@ const FilterSection = () => {
             },
           }}
           renderValue={(val) => {
-            if (val === 0) return <span style={{ color: "#d0d0d0" }}>Salary</span>;
+            if (val === "") return <span style={{ color: "#d0d0d0" }}>Salary</span>;
             return (
               <>
                 {val}

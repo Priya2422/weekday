@@ -11,7 +11,7 @@ const initialState = {
     companyName: "",
     location: "",
     locationType: "",
-    salary: 0,
+    salary: "",
     role: [],
   },
 };
