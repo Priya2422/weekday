@@ -1,16 +1,19 @@
 import Grid from "@mui/material/Grid";
 import { CustomCard } from "./components/cards";
-import { getSampleJdJSON } from "./data/dummyData";
 import { Container } from "@mui/material";
+import { Filter } from "./components/Filters";
+import { useFilterContext } from "./contexts/filterContext";
 function App() {
-  const dummyData = getSampleJdJSON();
-  console.log(dummyData.length);
+  const {filter_jobs}=useFilterContext();
   return (
     <div>
-      <Container maxWidth>
+      <div>
+        <Filter />
+      </div>
+      <Container sx={{ marginTop: "10rem" }} maxWidth>
         {" "}
         <Grid container spacing={4}>
-          {dummyData.map((data) => (
+          {filter_jobs.map((data) => (
             <CustomCard key={data.jdUid} jobDetail={data} />
           ))}
         </Grid>

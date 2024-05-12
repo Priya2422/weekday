@@ -36,7 +36,7 @@ const CustomCardComponent = ({ jobDetail }) => {
               Estimated Salary: {jobDetail.salaryCurrencyCode}{" "}
               {jobDetail.minJdSalary && jobDetail.maxJdSalary ? (
                 <>
-                  <span>{jobDetail.maxJdSalary}</span>
+                  <span>{jobDetail.minJdSalary}</span>
                   {" - "}
                   <span>{jobDetail.maxJdSalary}</span>
                 </>
