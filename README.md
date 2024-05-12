@@ -15,4 +15,6 @@
    ```
 
 3. **Step 3**
+   ```
    Run the project using npm run dev
+   ```
